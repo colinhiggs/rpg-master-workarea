@@ -1,0 +1,26 @@
+# The nested directories are their own git repositories, with their own
+# histories, remotes and release tags:
+#
+#   rpg-master/   github.com/colinhiggs/rpg-master
+#   rules/ico/    github.com/colinhiggs/ico-adventures-rules
+#
+# They are ignored here on purpose. Adding a repository to a repository
+# without making it a submodule records a bare commit hash and no way to
+# fetch it, which looks fine locally and is unusable anywhere else.
+#
+# Making them submodules would be worse rather than better. This is the
+# working directory the rules and the toolset are *written* in, and its
+# copies are meant to move freely and often; a pin here would be a
+# second thing to bump on every commit, recording nothing that the two
+# repositories do not already record for themselves. The adventures
+# project pins them because it consumes released versions. This one does
+# not.
+#
+# So this repository tracks only what belongs to the working directory
+# itself: the guidance and notes that span both projects.
+/rpg-master/
+/rules/
+
+# Python bytecode, wherever it lands.
+__pycache__/
+*.py[cod]
