@@ -7,10 +7,11 @@ this repository.
 
 This is the **rules and toolset** project: where the Ico ruleset and the generic rules
 compiler are written, branched, released and tagged. It is two git repositories inside
-a directory that is not one:
+a third that holds neither of them:
 
 ```
-rpg-master/              THIS directory — not a git repository, just a working directory
+rpg-master/              THIS directory — a repository too, tracking only the guidance
+                         that spans both projects: this file, README.md, notes.md
   rpg-master/             REPO: the game engine + rules-toolset (the generic compiler)
     rules/demo/            the toolset's own test fixture — the only ruleset that
                            belongs to this repo
@@ -19,11 +20,17 @@ rpg-master/              THIS directory — not a git repository, just a working
     ico/                  REPO: the Ico ruleset — rules/, book/, sim/, build/
 ```
 
-Two things follow. A `git status` run at the top level reports on whichever repository
-git finds by walking up, which is not what you meant — always `git -C` a specific
-repo, or `cd` into one. And the name `rpg-master` appears twice, so paths written for
-another layout are wrong here and vice versa; that has already produced documentation
-telling people to run commands that could not work.
+The two inner repositories are ignored here rather than made submodules, and
+`.gitignore` gives the reasoning at length: this is the working directory they are
+*written* in, so a pin here would be a second thing to bump on every commit and would
+record nothing they do not already record themselves.
+
+Two things follow. A `git status` at the top level answers about the wrapper and its
+three files, so a clean tree here says nothing whatever about the state of the rules or
+the toolset — always `git -C` a specific repo, or `cd` into one. And the name
+`rpg-master` appears twice, so paths written for another layout are wrong here and vice
+versa; that has already produced documentation telling people to run commands that
+could not work.
 
 ## Working across the projects
 
@@ -96,10 +103,10 @@ python3 sim/balance.py --check      # gates only; exit 1 on failure
 python3 sim/sweep.py -m <rule-id>.<mechanic_key>=<v1>,<v2>,...   # what-if a value
 ```
 
-**`--check` does not currently pass**, and is not expected to: six gates fail and each
+**`--check` does not currently pass**, and is not expected to: ten gates fail and each
 is an open tuning question `rules/ico/TODO.md` already carries. Run it either side of
-a change to a rule value — the same six failures with the same numbers means the
-change was neutral, a seventh means it was not. See `rules/ico/sim/README.md`.
+a change to a rule value — the same ten failures with the same numbers means the
+change was neutral, an eleventh means it was not. See `rules/ico/sim/README.md`.
 
 ## The single-source rule
 
