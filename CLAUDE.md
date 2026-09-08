@@ -103,11 +103,14 @@ python3 sim/balance.py --check      # gates only; exit 1 on failure
 python3 sim/sweep.py -m <rule-id>.<mechanic_key>=<v1>,<v2>,...   # what-if a value
 ```
 
-**`--check` does not currently pass**, and is not expected to: eleven gates fail and
+**`--check` does not currently pass**, and is not expected to: fourteen gates fail and
 each is an open tuning question `rules/ico/TODO.md` already carries. Run it either
-side of a change to a rule value — the same eleven failures with the same numbers
-means the change was neutral, a twelfth means it was not. The count tracks the rules
-and has been six, then ten, then eleven; `rules/ico/sim/README.md` says why each time.
+side of a change to a rule value — the same fourteen failures with the same numbers
+means the change was neutral, a fifteenth means it was not. Compare the numbers and
+not the count: several failures sit within a hundredth of a bound, and `--check` runs
+every duel off one seeded stream, so an early change re-rolls every later pairing.
+The count has been six, then ten, eleven, and now fourteen;
+`rules/ico/sim/README.md` says why each time.
 
 ## The single-source rule
 
