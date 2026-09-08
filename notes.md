@@ -68,11 +68,18 @@ poor place to keep the only copy of where things stand.
 `rpg-master/` (the toolset) sits at `250ff1d`, also level with its remote. Both can be
 re-cloned from GitHub and lose nothing.
 
-This wrapper repository has **no remote**, and that is deliberate — `.gitignore`
-explains why the inner repositories are ignored rather than pinned. The consequence is
-that these three files and their history exist in one `.git` directory on one machine.
-Moving the work means copying the whole tree, `.git` included. Cloning the two inner
-repositories fresh and re-creating the wrapper around them loses this file.
+This wrapper repository now has a remote of its own,
+`github.com/colinhiggs/rpg-master-workarea`, which is what makes the three of them
+movable together. It did not have one when this note was first written, and the
+difference matters: without it, these three files and their history lived in a single
+`.git` directory on a single machine, and copying the tree with `.git` included was the
+only way to keep them.
+
+What has not changed is that the inner repositories are ignored here rather than made
+submodules, and `.gitignore` gives the reasoning at length. So a clone of the work area
+gives you this file, `CLAUDE.md` and `README.md` and nothing else; `rpg-master/` and
+`rules/ico/` are cloned into place separately from their own remotes. Three clones, not
+one recursive one.
 
 ## What the last stretch of work did
 
