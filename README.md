@@ -48,7 +48,7 @@ copies of each shared repository**, normally at different commits.
   **[rules/ico/SHARING.md](rules/ico/SHARING.md)** — who may write to
   what in each.
 - **[rules/ico/VERSIONING.md](rules/ico/VERSIONING.md)** — what the
-  version numbers mean. The ruleset is at 1.0.4; the toolset is
+  version numbers mean. The ruleset is at 2.2.0; the toolset is
   unversioned, and a consumer's submodule pin is its version.
 
 ## The five pieces
@@ -88,7 +88,7 @@ alongside the real ruleset.
 ### 5. `rules/ico/` — the Ico ruleset
 
 A d20 system with no classes, built on a discipline-based
-specialisation and advancement layer. Forty-four documents: the core
+specialisation and advancement layer. Forty-five documents: the core
 roll, the two hit point pools, character creation, combat and stances,
 skills, disciplines, powers, equipment, and magic with a spell list of
 forty-three spells. It also carries `sim/`, a balance simulator that
@@ -96,9 +96,10 @@ measures whether the resulting game is any good — a job the build
 pipeline cannot do, since proving every number agrees says nothing
 about whether the numbers are right.
 
-Deliberately unfinished: the bestiary has one creature, ranged weapons
-are unstatted, and around thirty skills have no governing attribute
-yet. See [`rules/ico/README.md`](rules/ico/README.md) and its `TODO.md`.
+Deliberately unfinished: the bestiary has one creature, the ranged
+weapons are statted but have never been through `sim/`, and around
+thirty skills have no governing attribute yet. See
+[`rules/ico/README.md`](rules/ico/README.md) and its `TODO.md`.
 
 ## How the pieces relate, and do not yet
 
@@ -130,7 +131,7 @@ Build and check the rules, from `rpg-master/rules-toolset/`:
 
 ```bash
 python3 tools/build.py ico          # or demo
-python3 tools/test_rules.py ico     # 114 pipeline tests
+python3 tools/test_rules.py ico     # 199 pipeline tests
 ```
 
 Measure the game, from `rules/ico/`, after building:
@@ -142,7 +143,9 @@ python3 sim/balance.py --check      # gates only; exit 1 on failure
 The first two prove the book, the snippets and the server data agree on
 every number. The third asks whether those numbers make a good game.
 They catch entirely different things, and `--check` does not currently
-pass — six gates fail, each an open tuning question `TODO.md` carries.
+pass — fourteen gates fail, each an open tuning question `TODO.md`
+carries. That count is a moving baseline rather than a target: read the
+numbers either side of a change, not the count.
 
 Run the game, from `rpg-master/`:
 

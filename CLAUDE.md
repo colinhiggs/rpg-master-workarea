@@ -89,7 +89,7 @@ From `rpg-master/rules-toolset/`:
 
 ```bash
 python3 tools/build.py ico          # rules/ico -> book.html, snippets.json, mechanics.json
-python3 tools/test_rules.py ico     # 114 pipeline tests, exercising the real ruleset
+python3 tools/test_rules.py ico     # 199 pipeline tests, exercising the real ruleset
 python3 tools/build.py demo && python3 tools/test_rules.py    # the toolset's own fixture
 ```
 
