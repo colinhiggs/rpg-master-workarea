@@ -103,10 +103,11 @@ python3 sim/balance.py --check      # gates only; exit 1 on failure
 python3 sim/sweep.py -m <rule-id>.<mechanic_key>=<v1>,<v2>,...   # what-if a value
 ```
 
-**`--check` does not currently pass**, and is not expected to: ten gates fail and each
-is an open tuning question `rules/ico/TODO.md` already carries. Run it either side of
-a change to a rule value — the same ten failures with the same numbers means the
-change was neutral, an eleventh means it was not. See `rules/ico/sim/README.md`.
+**`--check` does not currently pass**, and is not expected to: eleven gates fail and
+each is an open tuning question `rules/ico/TODO.md` already carries. Run it either
+side of a change to a rule value — the same eleven failures with the same numbers
+means the change was neutral, a twelfth means it was not. The count tracks the rules
+and has been six, then ten, then eleven; `rules/ico/sim/README.md` says why each time.
 
 ## The single-source rule
 
