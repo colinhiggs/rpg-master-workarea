@@ -34,22 +34,27 @@ nested repositories are gitignored rather than made submodules; the
 reasoning is in `.gitignore`.
 
 A third project, `ico-adventures`, lives elsewhere on this machine and
-holds both of them as submodules. That means there are **two working
-copies of each shared repository**, normally at different commits.
+holds both of them as gitignored clones, having dropped its submodules
+in September 2026. It commits a copy of the ruleset's build outputs
+instead. That still means there are **two working copies of each shared
+repository**, normally at different commits — but nothing over there
+records which commits, so nothing will tell you they have drifted.
 
 - **[CLAUDE.md](CLAUDE.md)** — how to work here, and the pointers below
   gathered in one place.
 - **[rpg-master/WORKING.md](rpg-master/WORKING.md)** — how the two
   projects share these repositories: which working copy to open, why
   they are separate Claude projects by default, and step-by-step
-  procedures for extending the toolset, adding a creature, bumping a
-  pin, cutting a release, and resolving a `build/` conflict.
+  procedures for extending the toolset, adding a creature,
+  re-vendoring, cutting a release, and resolving a `build/` conflict.
 - **[rpg-master/SHARING.md](rpg-master/SHARING.md)** and
   **[rules/ico/SHARING.md](rules/ico/SHARING.md)** — who may write to
   what in each.
 - **[rules/ico/VERSIONING.md](rules/ico/VERSIONING.md)** — what the
-  version numbers mean. The ruleset is at 2.2.0; the toolset is
-  unversioned, and a consumer's submodule pin is its version.
+  version numbers mean. The ruleset is at 2.5.0; the toolset is
+  unversioned and stays that way — it is a tool dependency, and a
+  mismatch fails loudly at build time rather than producing quietly
+  wrong output.
 
 ## The five pieces
 
@@ -131,7 +136,7 @@ Build and check the rules, from `rpg-master/rules-toolset/`:
 
 ```bash
 python3 tools/build.py ico          # or demo
-python3 tools/test_rules.py ico     # 199 pipeline tests
+python3 tools/test_rules.py ico     # 209 pipeline tests
 ```
 
 Measure the game, from `rules/ico/`, after building:

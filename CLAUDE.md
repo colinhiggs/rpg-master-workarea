@@ -10,7 +10,7 @@ compiler are written, branched, released and tagged. It is two git repositories 
 a third that holds neither of them:
 
 ```
-rpg-master/              THIS directory — a repository too, tracking only the guidance
+rpg-master-workarea/     THIS directory — a repository too, tracking only the guidance
                          that spans both projects: this file, README.md, notes.md
   rpg-master/             REPO: the game engine + rules-toolset (the generic compiler)
     rules/demo/            the toolset's own test fixture — the only ruleset that
@@ -35,15 +35,19 @@ could not work.
 ## Working across the projects
 
 The adventures project (`ico-adventures`, elsewhere on this machine) holds both of
-these repositories as git submodules and writes to them.
+these repositories as gitignored clones and writes to them. It stopped using
+submodules in September 2026: what it commits instead is `refs/rules-ico/`, its own
+copy of the two build outputs an adventure reads, stamped with the version, commit
+and describe they came from. There is no recorded dependency on the toolset at all,
+deliberately — a mismatch there fails loudly at build time.
 **[rpg-master/WORKING.md](rpg-master/WORKING.md)** covers how the two projects share
 them. Read it before any task that involves the adventures project at all. What it
 settles for sessions in *this* project:
 
 - **This is the write side.** The clones here are where the rules and the toolset are
-  developed, branched, released and tagged. The adventures project's submodule
-  checkouts are read-mostly, and commit there only for a genuinely adventure-driven
-  change such as a new creature.
+  developed, branched, released and tagged. The adventures project's clones are
+  read-mostly, and commit there only for a genuinely adventure-driven change such as
+  a new creature.
 - **Do not reach into `ico-adventures/` from a session here.** It holds a second
   working copy of both of these repositories, normally at older commits. One agent
   holding two paths to one repository at two commits can build one and test the
@@ -56,10 +60,11 @@ settles for sessions in *this* project:
 - **The exception is the seam**: the adventure compiler, `{% gm-only %}` generalising
   `{% book-only %}`, sharing `rulesc.py`'s parsing. Those are designed on both sides
   at once, so open one combined session deliberately and close it when the feature
-  lands. Even then, edit the toolset here — the submodule copy consumes the result.
+  lands. Even then, edit the toolset here — the adventures project's clone consumes
+  the result.
 
 `WORKING.md` also steps out the procedures: extending the toolset, adding a creature
-from the adventures side, bumping a pin, cutting a release, and resolving a `build/`
+from the adventures side, re-vendoring, cutting a release, and resolving a `build/`
 conflict. Follow them there rather than reconstructing them.
 
 ## Who may change what
@@ -89,7 +94,7 @@ From `rpg-master/rules-toolset/`:
 
 ```bash
 python3 tools/build.py ico          # rules/ico -> book.html, snippets.json, mechanics.json
-python3 tools/test_rules.py ico     # 199 pipeline tests, exercising the real ruleset
+python3 tools/test_rules.py ico     # 209 pipeline tests, exercising the real ruleset
 python3 tools/build.py demo && python3 tools/test_rules.py    # the toolset's own fixture
 ```
 
