@@ -103,14 +103,19 @@ python3 sim/balance.py --check      # gates only; exit 1 on failure
 python3 sim/sweep.py -m <rule-id>.<mechanic_key>=<v1>,<v2>,...   # what-if a value
 ```
 
-**`--check` does not currently pass**, and is not expected to: fourteen gates fail and
+Both take `--jobs N` (default 8, or `ICO_SIM_JOBS`), which spreads the work across
+cores. It changes how long a run takes and never a number in it — if a `--jobs`
+setting ever changes an answer, that is a bug and not a tuning question.
+
+**`--check` does not currently pass**, and is not expected to: nine gates fail and
 each is an open tuning question `rules/ico/TODO.md` already carries. Run it either
-side of a change to a rule value — the same fourteen failures with the same numbers
-means the change was neutral, a fifteenth means it was not. Compare the numbers and
-not the count: several failures sit within a hundredth of a bound, and `--check` runs
-every duel off one seeded stream, so an early change re-rolls every later pairing.
-The count has been six, then ten, eleven, and now fourteen;
-`rules/ico/sim/README.md` says why each time.
+side of a change to a rule value — the same nine failures with the same numbers
+means the change was neutral, a tenth means it was not. Compare the numbers and not
+the count: several failures sit within a hundredth of a bound. Each duel is seeded
+from its own name, so a pairing draws the same numbers wherever it runs and adding an
+archetype no longer re-rolls every pairing after it; before that landed, the order
+was part of the answer. The count has been six, then ten, eleven, fourteen, and now
+nine; `rules/ico/sim/README.md` says why each time.
 
 ## The single-source rule
 
