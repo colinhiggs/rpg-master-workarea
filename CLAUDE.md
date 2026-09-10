@@ -116,7 +116,10 @@ setting ever changes an answer, that is a bug and not a tuning question.
 each is an open tuning question `rules/ico/TODO.md` already carries — with the
 reasoning behind everything already settled in `rules/ico/DONE.md`, which is worth
 reading before reopening anything, because several of its entries record an idea
-that was measured and found wanting. Run `--check` either side of a change to a rule
+that was measured and found wanting. `rules/ico/balancing_notes.md` is the third of
+those files and holds the case in between: a question measured hard enough that the
+numbers should not have to be produced again, and still not decided. The advancement
+point economy is there. Run `--check` either side of a change to a rule
 value: the same three failures with the same numbers means the change was neutral, a
 fourth means it was not. Compare the numbers and not the count — several pairings sit
 within a hundredth of a bound either side of it, and the level 1 priest duel is
