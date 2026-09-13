@@ -112,23 +112,22 @@ Both take `--jobs N` (default 8, or `ICO_SIM_JOBS`), which spreads the work acro
 cores. It changes how long a run takes and never a number in it — if a `--jobs`
 setting ever changes an answer, that is a bug and not a tuning question.
 
-**`--check` does not currently pass**, and is not expected to: three gates fail and
-each is an open tuning question `rules/ico/TODO.md` already carries — with the
+**`--check` does not currently pass**, and is not expected to: one gate fails and it
+is an open tuning question `rules/ico/TODO.md` already carries — with the
 reasoning behind everything already settled in `rules/ico/DONE.md`, which is worth
 reading before reopening anything, because several of its entries record an idea
 that was measured and found wanting. `rules/ico/balancing_notes.md` is the third of
 those files and holds the case in between: a question measured hard enough that the
-numbers should not have to be produced again, and still not decided. The advancement
-point economy is there. Run `--check` either side of a change to a rule
-value: the same three failures with the same numbers means the change was neutral, a
-fourth means it was not. Compare the numbers and not the count — several pairings sit
-within a hundredth of a bound either side of it, and the level 1 priest duel is
-currently *passing* by a thousandth of a round, so a fourth failure may be one of
+numbers should not have to be produced again, and still not decided. Run `--check`
+either side of a change to a rule
+value: the same failure with the same numbers means the change was neutral, a
+second means it was not. Compare the numbers and not the count — several pairings sit
+within a hundredth of a bound either side of it, so a new failure may be one of
 those tipping over rather than anything the change did. Each duel is seeded from its
 own name, so a pairing draws the same numbers wherever it runs and adding an
 archetype no longer re-rolls every pairing after it; before that landed, the order
 was part of the answer. The count has
-been six, then ten, eleven, fourteen, nine, and now three;
+been six, then ten, eleven, fourteen, nine, three, and now one;
 `rules/ico/sim/README.md` says why each time.
 
 ## The single-source rule
